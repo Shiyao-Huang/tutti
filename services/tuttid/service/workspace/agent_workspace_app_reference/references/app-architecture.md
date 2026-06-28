@@ -68,7 +68,7 @@ Tutti package startup:
 
 - `bootstrap.sh` takes no arguments.
 - Bind to `$TUTTI_APP_HOST:$TUTTI_APP_PORT`.
-- Use `$TUTTI_APP_NODE`, `$TUTTI_APP_PYTHON`, and `$TUTTI_APP_NPM`; do not rely on system runtime names.
+- Use `$TUTTI_APP_NODE` for the app server and `$TUTTI_APP_NPM` for prepare/build steps; do not rely on system runtime names. Use `$TUTTI_APP_PYTHON` only when adapting an existing Python helper, not as the primary agent-enabled app server.
 - Treat `$TUTTI_APP_PACKAGE_DIR` as read-only after startup.
 - Store durable data under `$TUTTI_APP_DATA_DIR`.
 - Store scratch files under `$TUTTI_APP_RUNTIME_DIR`.
