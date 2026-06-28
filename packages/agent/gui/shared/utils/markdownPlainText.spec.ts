@@ -68,6 +68,19 @@ describe("stripMarkdownFormatting", () => {
     expect(stripMarkdownFormatting("")).toBe("");
   });
 
+  it("strips unmatched bold markers (stray ** without closing pair)", () => {
+    expect(stripMarkdownFormatting("Hello **World")).toBe("Hello World");
+    expect(stripMarkdownFormatting("**unmatched text")).toBe("unmatched text");
+  });
+
+  it("strips unmatched underscore bold markers (stray __ without closing pair)", () => {
+    expect(stripMarkdownFormatting("Hello __World")).toBe("Hello World");
+  });
+
+  it("handles line break wrapping", () => {
+    expect(stripMarkdownFormatting("Line 1\nLine 2")).toBe("Line 1\nLine 2");
+  });
+
   it("does not strip underscores in file paths", () => {
     expect(stripMarkdownFormatting("/path/to/my_file_name.ts")).toBe(
       "/path/to/my_file_name.ts"

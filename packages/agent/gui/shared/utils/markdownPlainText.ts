@@ -23,6 +23,10 @@ export function stripMarkdownFormatting(markdown: string): string {
   result = result.replace(/\*{2}(.+?)\*{2}/g, "$1");
   result = result.replace(/_{2}(.+?)_{2}/g, "$1");
 
+  // Remove unmatched bold markers (stray ** or __ without closing pair)
+  result = result.replace(/(?<!\*)\*{2}(?!\*)/g, "");
+  result = result.replace(/(?<!_)_{2}(?!_)/g, "");
+
   // Remove strikethrough: ~~text~~
   result = result.replace(/~~(.+?)~~/g, "$1");
 
